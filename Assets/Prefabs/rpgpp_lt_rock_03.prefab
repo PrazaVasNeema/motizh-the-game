@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1294916117959063650}
   - component: {fileID: 1753986981650692709}
   - component: {fileID: 8526102720990069346}
+  - component: {fileID: -6044650804342622362}
   m_Layer: 0
   m_Name: rpgpp_lt_rock_03
   m_TagString: Untagged
@@ -115,3 +116,15 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 455995b8866658b42b3da7b1cab18535, type: 3}
+--- !u!114 &-6044650804342622362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272691272404989824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d52f857be29584e4dbf46f71d5294a6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

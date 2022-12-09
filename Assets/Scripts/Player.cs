@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public float speed = 1f;
     private float m_timer = 0f;
 
-    private bool m_isDown;
+    private bool m_isDown = false;
 
     private void Update()
     {

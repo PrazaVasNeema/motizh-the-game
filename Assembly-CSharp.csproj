@@ -46,7 +46,6 @@
      <Compile Include="Assets\TestJob\PreRefactor\Scripts\ForceCameraAspectRatio.cs" />
      <Compile Include="Assets\TestJob\PostRefactor\ScriptsXLab\Cloud.cs" />
      <Compile Include="Assets\TestJob\PostRefactor\ScriptsXLab\StoneSpawner.cs" />
-     <Compile Include="Assets\Scripts\Game.cs" />
      <Compile Include="Assets\TestJob\PreRefactor\Scripts\SpawnStone.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\TestJob\PostRefactor\ScriptsXLab\CloudController.cs" />
@@ -55,6 +54,10 @@
      <Compile Include="Assets\TestJob\PostRefactor\ScriptsXLab\FreeCameraPostRefactor.cs" />
      <Compile Include="Assets\TestJob\PostRefactor\ToolsChange.cs" />
      <Compile Include="Assets\TestJob\PreRefactor\Scripts\FreeCamera.cs" />
+     <Compile Include="Assets\Scripts\Stone.cs" />
+     <Compile Include="Assets\Scripts\GameController.cs" />
+     <Compile Include="Assets\Scripts\Stick.cs" />
+     <Compile Include="Assets\Scripts\GameEvents.cs" />
      <None Include="Assets\TestJob\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TestJob\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TestJob\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
