@@ -51,6 +51,17 @@ public class GameController : MonoBehaviour
             var body = contact.otherCollider.GetComponent<Rigidbody>();
             body.AddForce(contact.normal * m_power);
             Physics.IgnoreCollision(contact.thisCollider, contact.otherCollider, true);
+
+            if (stone.gameObject.tag == "Stone2") // Очень тяжело
+            {
+
+            }
+
+            if (stone.gameObject.CompareTag("Stone2")) // Почти бесплатно
+            {
+
+            }
+
         }
     }
 
