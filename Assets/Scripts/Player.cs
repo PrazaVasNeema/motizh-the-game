@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public float speed = 1f;
     private float m_timer = 0f;
 
-    private bool m_isDown = false;
+    private bool m_isDown;
 
     private void Update()
     {
@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
         // Обычно препод обращается к косинусу
         m_timer += Time.deltaTime; // синхронизируем со временем
 //        var x = Mathf.Cos(Mathf.PI * m_timer * speed) * range;
-        var target = range * (m_isDown ? range -1f : 1f);
+        var target = range * (m_isDown ? -1f : 1f);
         var x = Mathf.MoveTowardsAngle(angels.x, target, speed * Time.deltaTime);
         angels.x = x;
 

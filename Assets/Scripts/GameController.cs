@@ -40,7 +40,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void OnCollisionStone(Collision collision)
     {
         // Понять, что это камень, можно через тег или через слой или через компонент
         if(collision.gameObject.TryGetComponent<Stone>(out var stone)) // Можно динамически создавать переменные
@@ -49,10 +49,10 @@ public class GameController : MonoBehaviour
             var contact = collision.contacts[0]; // Лучше делать так, а не постоянно вызывать дальше
             // А еще лучше сделать отдельный метод
             var body = contact.otherCollider.GetComponent<Rigidbody>();
-            body.AddForce(contact.normal * m_power);
+            body.AddForce(-contact.normal * m_power);
             Physics.IgnoreCollision(contact.thisCollider, contact.otherCollider, true);
 
-            if (stone.gameObject.tag == "Stone2") // Очень тяжело
+/*            if (stone.gameObject.tag == "Stone2") // Очень тяжело
             {
 
             }
@@ -60,7 +60,7 @@ public class GameController : MonoBehaviour
             if (stone.gameObject.CompareTag("Stone2")) // Почти бесплатно
             {
 
-            }
+            }*/
 
         }
     }

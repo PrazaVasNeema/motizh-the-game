@@ -30,7 +30,7 @@ public class Stone : MonoBehaviour
 //        Physics. // Можно запускать проверку с вшешним миром (через касты)
     }
 
-    private void onCollisionEnter(Collision other)
+    private void OnCollisionEnter(Collision other)
     {
 //        Debug.Log(other.gameObject.name, this);
         if(other.gameObject.TryGetComponent<Stone>(out var stone))
