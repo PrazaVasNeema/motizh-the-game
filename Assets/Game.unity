@@ -4183,6 +4183,7 @@ MonoBehaviour:
   m_stoneSpawner: {fileID: 1055958662}
   m_delay: 1
   m_power: 10
+  player: {fileID: 1905035897}
 --- !u!1001 &582925741
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5548,9 +5549,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  SetForwardOnStart:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!65 &671506583
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11936,9 +11934,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1905035897}
-          m_TargetAssemblyTypeName: Player, Assembly-CSharp
-          m_MethodName: OnDown
+        - m_Target: {fileID: 574839836}
+          m_TargetAssemblyTypeName: Game.GameController, Assembly-CSharp
+          m_MethodName: ChangePowlState
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -11952,9 +11950,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1905035897}
-          m_TargetAssemblyTypeName: Player, Assembly-CSharp
-          m_MethodName: OnUp
+        - m_Target: {fileID: 574839836}
+          m_TargetAssemblyTypeName: Game.GameController, Assembly-CSharp
+          m_MethodName: ChangePowlState
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -16536,21 +16534,6 @@ MonoBehaviour:
       - m_Target: {fileID: 574839836}
         m_TargetAssemblyTypeName: Game.GameController, Assembly-CSharp
         m_MethodName: OnCollisionStone
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  SetForwardOnStart:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 574839836}
-        m_TargetAssemblyTypeName: Game.GameController, Assembly-CSharp
-        m_MethodName: SetForwardOnStart
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
