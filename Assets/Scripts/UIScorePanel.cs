@@ -8,5 +8,10 @@ namespace Game
     {
         [SerializeField]
         private TMPro.TextMeshProUGUI m_scoreText;
+
+        public void SetScore(int score)
+        {
+            m_scoreText.text = score.ToString();
+        }
     }
 }

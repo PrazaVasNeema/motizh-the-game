@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
         // Изменение от -1 до 1
         // Обычно препод обращается к косинусу
-        m_timer += Time.deltaTime; // синхронизируем со временем
+//        m_timer += Time.deltaTime; // синхронизируем со временем
 //        var x = Mathf.Cos(Mathf.PI * m_timer * speed) * range;
         var target = range * (m_isDown ? -1f : 1f);
         var x = Mathf.MoveTowardsAngle(angels.x, target, speed * Time.deltaTime);

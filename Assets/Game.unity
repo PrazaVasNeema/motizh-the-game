@@ -4258,9 +4258,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ef170e751745d542b0d9e5e48e48c6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stoneSpawner: {fileID: 1055958662}
-  m_delay: 1
-  m_power: 1000
+  m_stoneSpawner: {fileID: 1055958664}
+  m_power: 10
+  m_scorePanel: {fileID: 1461403657}
+  m_mainMenuPanel: {fileID: 734946125}
+  m_gamePanel: {fileID: 1970693973}
+  m_settings: {fileID: 11400000, guid: 45a7f78f61929274d9611179a665bb9c, type: 2}
 --- !u!1001 &582925741
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8685,7 +8688,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1055958663}
-  - component: {fileID: 1055958662}
+  - component: {fileID: 1055958664}
   m_Layer: 0
   m_Name: SpawnStonePoint
   m_TagString: Untagged
@@ -8693,22 +8696,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1055958662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1055958661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 974aa3a9c9e179145b0ec2709512f7f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stonePrefab:
-  - {fileID: 2537082933047392383, guid: 926ab9ca0af25a44bb9c760a23165ce5, type: 3}
-  - {fileID: 5380268018491609523, guid: c7abc4011a6814244a8f007042023a33, type: 3}
-  - {fileID: 1272691272404989824, guid: 1720574835a107844920bf1194735e55, type: 3}
 --- !u!4 &1055958663
 Transform:
   m_ObjectHideFlags: 0
@@ -8724,6 +8711,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 17.489, z: 0}
+--- !u!114 &1055958664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055958661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e304f809f6f8d439bc198155559189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stonePrefabs:
+  - {fileID: 2537082933047392383, guid: 926ab9ca0af25a44bb9c760a23165ce5, type: 3}
+  - {fileID: 5380268018491609523, guid: c7abc4011a6814244a8f007042023a33, type: 3}
+  - {fileID: 1272691272404989824, guid: 1720574835a107844920bf1194735e55, type: 3}
 --- !u!1 &1058336577 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1069567032315564, guid: bdf8e7438a7816543998181bd3067573, type: 3}
@@ -12603,7 +12606,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1449553123}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 574839836}
+        m_TargetAssemblyTypeName: Game.GameController, Assembly-CSharp
+        m_MethodName: GameState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1449553123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12748,6 +12763,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1461403656}
+  - component: {fileID: 1461403657}
   m_Layer: 5
   m_Name: ScorePanel
   m_TagString: Untagged
@@ -12778,6 +12794,19 @@ RectTransform:
   m_AnchoredPosition: {x: 427, y: 157}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1461403657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461403655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f28c6bf113b3f0a47be5cfcd9ba4ba5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_scoreText: {fileID: 1735367858}
 --- !u!1 &1464500149 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1694894201118028, guid: 6dcae7204dd466c4c862bc640ea7c02e, type: 3}

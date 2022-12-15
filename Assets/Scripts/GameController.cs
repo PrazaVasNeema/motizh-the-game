@@ -8,9 +8,9 @@ namespace Game{
     {
         [SerializeField] // Берем за привычку все защищать
         private StoneSpawner m_stoneSpawner;
-        private float m_timer = 0f;
+/*        private float m_timer = 0f;
         [SerializeField]
-        private float m_delay = 1f;
+        private float m_delay = 1f;*/
 
         [SerializeField]
         private float m_power = 100f;
@@ -23,59 +23,64 @@ namespace Game{
         private GameObject m_gamePanel;
 
         [SerializeField]
-        private GameSettings m_gameSettings;
+        private GameSettings m_settings;
 
-        private List<GameObject> m_stone = new();
+        private List<GameObject> m_stones = new();
 
         private int m_score = 0;
         private int m_maxScore = 0;
+        private float m_timer = 0f;
+        private float m_delay = 0f;
+        private float m_maxDelay = 0f;
 
         // Кешируем значение
+        private void Start()
+        {
+            // StartGame();
+            MainMenuState();
+
+            //Debug.Log($"GameSettings.num = {m_settings.num}");
+        }
 
         public void MainMenuState()
         {
                     ClearStones();
 
-                    enabled = true;
+                    enabled = false;
                     m_mainMenuPanel.SetActive(true);
                     m_gamePanel.SetActive(false);
                     RefreshScore(m_maxScore);
         }
 
-        private void GameState()
+        private float CalcNextDelay()
         {
-                    // !
-
-                    enabled = false;
-
-                    m_mainMenuPanel.SetActive(true);
-                    m_gamePanel.SetActive(false);
-                    m_score = 0;
-                    RefreshScore(m_score);
-
-                    StartGame();
-
+            var delay = Random.Range(m_settings.minDelay, m_maxDelay);
+            Debug.Log($"CalcNextDelay - delay: {delay} - maxDelay: {m_maxDelay}");
+            return delay;
         }
 
-
-        private void Start()
+        public void GameState()
         {
+            // !
+            m_delay = CalcNextDelay();
+            m_maxDelay = m_settings.maxDelay;
+
+            enabled = true;
+            m_mainMenuPanel.SetActive(false);
+            m_gamePanel.SetActive(true);
+            m_score = 0;
+            RefreshScore(m_score);
+
             StartGame();
 
-            //Debug.Log($"GameSettings.num = {m_settings.num}");
         }
+
+
+
 
         private void StartGame()
         {
             GameEvents.onGameOver += OnGameOver; // Подписались
-        }
-
-        private void ClearStones()
-        {
-                    foreach (GameObject stone in m_stone)
-                    {
-                        Destroy(stone);
-                    }
         }
 
         private void OnGameOver()
@@ -87,14 +92,30 @@ namespace Game{
             // !
         }
 
+        private void ClearStones()
+        {
+            foreach (GameObject stone in m_stones)
+            {
+                Destroy(stone);
+            }
+            m_stones.Clear();
+        }
+
+
+
         private void Update()
         {
             m_timer += Time.deltaTime;
             if (m_timer >= m_delay) // !
             {
                 // !
-                m_stoneSpawner.Spawn();
+                var stone = m_stoneSpawner.Spawn();
+                m_stones.Add(stone);
                 m_timer -= m_delay;
+
+                m_delay = CalcNextDelay();
+                if (m_settings.minDelay < m_maxDelay)
+                    m_maxDelay -= m_settings.stepDelay;
             }
         }
         
@@ -126,8 +147,7 @@ namespace Game{
                 {
 
                 }*/
-                m_score++;
-                RefreshScore(m_score);
+
                 stone.SetAffect(false);
     				var contact = collision.contacts[0];
 
@@ -135,8 +155,11 @@ namespace Game{
     
     				var body = stone.GetComponent<Rigidbody>();
     				body.AddForce(stick.dir * m_power, ForceMode.Impulse);
-    
-    				Physics.IgnoreCollision(contact.thisCollider, contact.otherCollider, true);
+
+                m_score++;
+                RefreshScore(m_score);
+
+                Physics.IgnoreCollision(contact.thisCollider, contact.otherCollider, true);
 
             }
         }
