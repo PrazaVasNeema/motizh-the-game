@@ -12609,7 +12609,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 574839836}
         m_TargetAssemblyTypeName: Game.GameController, Assembly-CSharp
-        m_MethodName: GameState
+        m_MethodName: OnStartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12617,7 +12617,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1449553123
 MonoBehaviour:

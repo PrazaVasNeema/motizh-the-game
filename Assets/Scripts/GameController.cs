@@ -28,16 +28,43 @@ namespace Game{
 
         private void Start()
         {
-            MainMenuState();
+            ChangeGameState(false);
         }
 
-        public void MainMenuState()
+        private void ChangeGameState(bool playModeNeedsToBeActivated)
         {
-                    ClearStones();
-                    enabled = false;
-                    m_mainMenuPanel.SetActive(true);
-                    m_gamePanel.SetActive(false);
-                    RefreshScore(m_maxScore);
+            enabled = playModeNeedsToBeActivated;
+            m_mainMenuPanel.SetActive(!playModeNeedsToBeActivated);
+            m_gamePanel.SetActive(playModeNeedsToBeActivated);
+            if (playModeNeedsToBeActivated)
+            {
+                m_maxDelay = m_settings.maxDelay;
+                m_delay = CalcNextDelay();
+                m_score = 0;
+            }
+            else
+            {
+                ClearStones();
+                m_score = m_maxScore;
+            }
+            RefreshScore(m_score);
+
+        }
+        private void Update()
+        {
+            m_timer += Time.deltaTime;
+            if (m_timer >= m_delay)
+            {
+                var stone = m_stoneSpawner.Spawn();
+
+                m_stones.Add(stone);
+                m_timer -= m_delay;
+                m_delay = CalcNextDelay();
+                if (m_settings.minDelay < m_maxDelay)
+                {
+                    m_maxDelay -= m_settings.stepDelay;
+                }
+            }
         }
 
         private float CalcNextDelay()
@@ -46,27 +73,16 @@ namespace Game{
             return delay;
         }
 
-        public void GameState()
-        {
-            m_delay = CalcNextDelay();
-            m_maxDelay = m_settings.maxDelay;
-            enabled = true;
-            m_mainMenuPanel.SetActive(false);
-            m_gamePanel.SetActive(true);
-            m_score = 0;
-            RefreshScore(m_score);
-            StartGame();
-        }
-
-        private void StartGame()
+        public void OnStartGame()
         {
             GameEvents.onGameOver += OnGameOver;
+            ChangeGameState(true);
         }
 
         private void OnGameOver()
         {
             GameEvents.onGameOver -= OnGameOver;
-            MainMenuState();
+            ChangeGameState(false);
         }
 
         private void ClearStones()
@@ -76,22 +92,6 @@ namespace Game{
                 Destroy(stone);
             }
             m_stones.Clear();
-        }
-
-
-
-        private void Update()
-        {
-            m_timer += Time.deltaTime;
-            if (m_timer >= m_delay)
-            {
-                var stone = m_stoneSpawner.Spawn();
-                m_stones.Add(stone);
-                m_timer -= m_delay;
-                m_delay = CalcNextDelay();
-                if (m_settings.minDelay < m_maxDelay)
-                    m_maxDelay -= m_settings.stepDelay;
-            }
         }
         
         public void RefreshScore(int score)
@@ -104,17 +104,15 @@ namespace Game{
         {
             if(collision.gameObject.TryGetComponent<Stone>(out var stone))
             {
+    			var contact = collision.contacts[0];
+    			var stick = contact.thisCollider.GetComponent<Stick>();
+    			var body = stone.GetComponent<Rigidbody>();
+
                 stone.SetAffect(false);
-    				var contact = collision.contacts[0];
-
-    				var stick = contact.thisCollider.GetComponent<Stick>();
-    
-    				var body = stone.GetComponent<Rigidbody>();
-    				body.AddForce(stick.dir * m_power, ForceMode.Impulse);
-
+                body.AddForce(stick.dir * m_power, ForceMode.Impulse);
+                Physics.IgnoreCollision(contact.thisCollider, contact.otherCollider, true);
                 m_score++;
                 RefreshScore(m_score);
-                Physics.IgnoreCollision(contact.thisCollider, contact.otherCollider, true);
             }
         }
 

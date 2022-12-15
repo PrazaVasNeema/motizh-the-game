@@ -8,7 +8,7 @@ namespace Game
     public class Stick : MonoBehaviour
     {
         [SerializeField]
-        private UnityEvent<Collision> onCollisionStone; // События для принятия решений
+        private UnityEvent<Collision> onCollisionStone;
 
         private Vector3 m_lastPosition;
         private Vector3 m_direction;
@@ -16,7 +16,6 @@ namespace Game
     
         private void OnCollisionEnter(Collision other)
         {
-            Debug.Log(">>>");
             onCollisionStone.Invoke(other);
         }
         
