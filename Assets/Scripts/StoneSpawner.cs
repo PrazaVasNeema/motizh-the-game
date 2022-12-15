@@ -13,7 +13,6 @@ namespace Game
 		{
 			var position = transform.position;
 			var rotation = transform.rotation;
-
 			var index = Random.Range(0, stonePrefabs.Length);
 
 			return GameObject.Instantiate(stonePrefabs[index], position, rotation);

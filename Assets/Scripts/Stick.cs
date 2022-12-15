@@ -5,28 +5,25 @@ using UnityEngine.Events;
 
 namespace Game
 {
-
-public class Stick : MonoBehaviour
-{
-    [SerializeField]
-    private UnityEvent<Collision> onCollisionStone; // События для принятия решений
-
-    private Vector3 m_lastPosition;
-    private Vector3 m_direction;
-    public Vector3 dir => m_direction.normalized;
-
-
-
-    private void OnCollisionEnter(Collision other)
+    public class Stick : MonoBehaviour
     {
-        Debug.Log(">>>");
-        onCollisionStone.Invoke(other);
-    }
+        [SerializeField]
+        private UnityEvent<Collision> onCollisionStone; // События для принятия решений
+
+        private Vector3 m_lastPosition;
+        private Vector3 m_direction;
+        public Vector3 dir => m_direction.normalized;
     
-    private void Update()
-		{
-			m_direction = transform.position - m_lastPosition;
-			m_lastPosition = transform.position;
-		}
-}
+        private void OnCollisionEnter(Collision other)
+        {
+            Debug.Log(">>>");
+            onCollisionStone.Invoke(other);
+        }
+        
+        private void Update()
+    		{
+    			m_direction = transform.position - m_lastPosition;
+    			m_lastPosition = transform.position;
+    		}
+    }
 }
