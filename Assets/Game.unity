@@ -123,6 +123,55 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &5754987
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5754989}
+  - component: {fileID: 5754988}
+  m_Layer: 0
+  m_Name: GameState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &5754988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5754987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bc76e1c008e8874cb84ebf35a8b22cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_power: 10
+  m_gameController: {fileID: 574839836}
+  m_settings: {fileID: 11400000, guid: 45a7f78f61929274d9611179a665bb9c, type: 2}
+  m_stoneSpawner: {fileID: 1055958664}
+  m_gamePanel: {fileID: 1970693973}
+--- !u!4 &5754989
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5754987}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 574839835}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6462027 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1069567032315564, guid: bdf8e7438a7816543998181bd3067573, type: 3}
@@ -1756,6 +1805,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4943765590059028, guid: e7489574cca6d4645a7019414b8288e8, type: 3}
   m_PrefabInstance: {fileID: 221895431}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &223032640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 223032642}
+  - component: {fileID: 223032641}
+  m_Layer: 0
+  m_Name: MainMenuState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &223032641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223032640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71438463df1a48044a35072812297a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_gameController: {fileID: 574839836}
+  m_mainMenuPanel: {fileID: 734946125}
+--- !u!4 &223032642
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223032640}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 574839835}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &223226636
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4242,7 +4337,9 @@ Transform:
   m_LocalPosition: {x: 51.341633, y: 15.173794, z: 57.88714}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5754989}
+  - {fileID: 223032642}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4258,12 +4355,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ef170e751745d542b0d9e5e48e48c6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stoneSpawner: {fileID: 1055958664}
-  m_power: 10
   m_scorePanel: {fileID: 1461403657}
-  m_mainMenuPanel: {fileID: 734946125}
-  m_gamePanel: {fileID: 1970693973}
-  m_settings: {fileID: 11400000, guid: 45a7f78f61929274d9611179a665bb9c, type: 2}
+  m_mainMenuState: {fileID: 223032641}
+  m_gameState: {fileID: 5754988}
 --- !u!1001 &582925741
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17115,8 +17209,8 @@ MonoBehaviour:
   onCollisionStone:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 574839836}
-        m_TargetAssemblyTypeName: Game.GameController, Assembly-CSharp
+      - m_Target: {fileID: 5754988}
+        m_TargetAssemblyTypeName: Game.GameState, Assembly-CSharp
         m_MethodName: OnCollisionStone
         m_Mode: 0
         m_Arguments:

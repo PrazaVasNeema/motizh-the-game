@@ -16,7 +16,6 @@ namespace Game
     
         private void OnCollisionEnter(Collision other)
         {
-            Debug.Log(">>>");
             onCollisionStone.Invoke(other);
         }
         

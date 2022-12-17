@@ -9,14 +9,9 @@ namespace Game
     {
         [SerializeField]
         private Rigidbody m_rigidbody;
-    
-        private bool m_isAffect = true;
-    
-        public void SetAffect(bool isAffect)
-        {
-            m_isAffect = isAffect;
-        }
-    
+
+        public bool isAffect { set; get; } = true;
+
         private void Awake()
         {
             if( m_rigidbody == null)
@@ -27,11 +22,7 @@ namespace Game
         {
             if(other.gameObject.TryGetComponent<Stone>(out var stone))
             {
-                if(m_isAffect && stone.m_isAffect)
-                {
-                    GameEvents.onGameOver?.Invoke();
-                    m_isAffect = false;
-                }
+                GameEvents.onCollisionStones?.Invoke(this, stone);
             }
         }
     }

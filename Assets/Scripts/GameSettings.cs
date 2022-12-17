@@ -7,7 +7,6 @@ namespace Game
     [CreateAssetMenu(menuName = "GameSettings", fileName ="GameSettings")]
     public class GameSettings : ScriptableObject
     {
-        public int num = 10;
         [Header("Stone")]
         [SerializeField] private float m_minDelay = 1f;
         public float minDelay

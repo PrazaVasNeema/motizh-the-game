@@ -7,6 +7,6 @@ namespace Game
 
     public static class GameEvents
     {
-        public static System.Action onGameOver; // Должно быть четное число
+        public static System.Action<Stone, Stone> onCollisionStones;
     }
 }

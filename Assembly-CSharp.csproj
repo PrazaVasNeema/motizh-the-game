@@ -74,13 +74,15 @@
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\TestJob\PostRefactor\ScriptsXLab\CloudController.cs" />
     <Compile Include="Assets\TestJob\PreRefactor\Scripts\CloudLogics.cs" />
+    <Compile Include="Assets\Scripts\GameState.cs" />
     <Compile Include="Assets\TestJob\PostRefactor\ScriptsXLab\PanelFeedbackController.cs" />
+    <Compile Include="Assets\Scripts\StoneSpawner.cs" />
+    <Compile Include="Assets\Scripts\MainMenuState.cs" />
     <Compile Include="Assets\Scripts\GameEvents.cs" />
     <Compile Include="Assets\TestJob\PostRefactor\ScriptsXLab\FreeCameraPostRefactor.cs" />
     <Compile Include="Assets\Scripts\Stone.cs" />
     <Compile Include="Assets\TestJob\PostRefactor\ToolsChange.cs" />
     <Compile Include="Assets\TestJob\PreRefactor\Scripts\FreeCamera.cs" />
-    <Compile Include="Assets\Scripts\StoneSpawner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TestJob\TextMesh Pro\Shaders\TMPro.cginc" />
