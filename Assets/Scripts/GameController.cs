@@ -8,6 +8,8 @@ namespace Game{
     {
         [SerializeField]
         private UIScorePanel m_scorePanel;
+        [SerializeField]
+        private IntroState m_introState;
         [SerializeField] 
         private MainMenuState m_mainMenuState;
         [SerializeField] 
@@ -23,29 +25,38 @@ namespace Game{
 
         private void Start()
         {
-            MainMenuState();
+            SetIntroState();
         }
 
-        private void MainMenuState()
+        public void SetIntroState()
         {
+            m_introState.enabled = true;
+            m_mainMenuState.enabled = false;
+            m_gameState.enabled = false;
+        }
+
+        public void SetMainMenuState()
+        {
+            m_introState.enabled = false;
             m_mainMenuState.enabled = true;
             m_gameState.enabled = false;
         }
 
-        private void GameState()
+        public void SetGameState()
         {
+            m_introState.enabled = false;
             m_mainMenuState.enabled = false;
             m_gameState.enabled = true;
         }
 
         public void StartGame()
         {
-            GameState();
+            SetGameState();
         }
 
         public void GameOver()
         {
-            MainMenuState();
+            SetMainMenuState();
         }
 
         public void IncScore()
@@ -62,6 +73,11 @@ namespace Game{
         public void RefreshScore(int score)
         {
             m_scorePanel.SetScore(score);
+        }
+
+        public void BringCameraToPoint(Transform point)
+        {
+
         }
 
     }
