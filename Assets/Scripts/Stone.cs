@@ -2,50 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Можно дублировать классы
-namespace Game{ // Чтобы скрывать доступ к реализациям, без namespace скрипт является глобальным
-// Carx.gdfg.dffg библио подраздел
 
-
-
-public class Stone : MonoBehaviour
+namespace Game
 {
-    // Получить ссылку можно:
-    [SerializeField] // Передав вручную
-//    [RequireComponent](typeof(Rigidbody))
-    private Rigidbody m_rigidbody;
-
-    private bool m_isAffect = true;
-
-    public void SetAffect(bool isAffect)
+    public class Stone : MonoBehaviour
     {
-        m_isAffect = isAffect;
-    }
+        [SerializeField]
+        private Rigidbody m_rigidbody;
 
-    private void Awake()
-    {
-        if( m_rigidbody == null) // Оставляем пространство для маневра
-            m_rigidbody = GetComponent<Rigidbody>(); // Через это, но может не быть нужного компонента
-        
-//        Physics. // Можно запускать проверку с вшешним миром (через касты)
-    }
+        public bool isAffect { set; get; } = true;
 
-    private void OnCollisionEnter(Collision other)
-    {
-//        Debug.Log(other.gameObject.name, this);
-        if(other.gameObject.TryGetComponent<Stone>(out var stone))
+        private void Awake()
         {
-            if(m_isAffect && stone.m_isAffect) // Приватное поле этого же класса, но другого объекта
+            if( m_rigidbody == null)
+                m_rigidbody = GetComponent<Rigidbody>(); 
+        }
+    
+        private void OnCollisionEnter(Collision other)
+        {
+            if(other.gameObject.TryGetComponent<Stone>(out var stone))
             {
-                // LOSE
-                GameEvents.onGameOver?.Invoke();
-                m_isAffect = false;
+                GameEvents.onCollisionStones?.Invoke(this, stone);
             }
         }
     }
 }
-
-}
-
-
-// Надо стараться всегда применять их метода (не изменять напрямую, к примеру, velocity)
