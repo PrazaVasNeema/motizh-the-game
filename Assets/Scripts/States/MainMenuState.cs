@@ -17,6 +17,8 @@ namespace Game
 		private MainCamera m_mainCamera;
 		[SerializeField]
 		private Transform[] m_mainCameraTransforms;
+		[SerializeField]
+		private DataController m_dataController;
 
 		private void OnEnable()
 		{
@@ -45,6 +47,12 @@ namespace Game
 			m_mainCamera.StriveForTransform(m_mainCameraTransforms[0]);
 			m_mainMenuPanel.SetActive(true);
 			m_settingsPanel.SetActive(false);
+		}
+
+		public void SetDifficultyLevel(int difficultyLevel)
+        {
+			m_dataController.m_gameData.difficultyLevel = difficultyLevel;
+			m_dataController.SaveGameData();
 		}
 	}
 

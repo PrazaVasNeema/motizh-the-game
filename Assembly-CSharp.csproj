@@ -87,6 +87,9 @@
     <Compile Include="Assets\Scripts\MainCamera.cs" />
     <Compile Include="Assets\Scripts\States\SettingsState.cs" />
     <Compile Include="Assets\Scripts\States\CollectionState.cs" />
+    <Compile Include="Assets\Scripts\Data\GameData.cs" />
+    <Compile Include="Assets\Scripts\Data\SettingsData.cs" />
+    <Compile Include="Assets\Scripts\DataController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TestJob\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -8,27 +8,30 @@ namespace Game
 	public class GameState : MonoBehaviour
 	{
 		[SerializeField] private float m_power = 100f;
-
 		[SerializeField]
 		private GameController m_gameController;
 		[SerializeField]
-		private GameSettings m_settings;
+		private GameSettings[] m_settings;
 		[SerializeField]
 		private StoneSpawner m_stoneSpawner;
 		[SerializeField]
 		private GameObject m_gamePanel;
+		[SerializeField]
+		private DataController m_dataController;
 
 		private float m_timer = 0f;
 		private float m_delay = 0f;
 		private float m_maxDelay = 0f;
 		private List<GameObject> m_stones = new();
+		private int m_settingsIndex;
 
 		private void OnEnable()
 		{
+			m_settingsIndex = m_dataController.m_gameData.difficultyLevel;
 			GameEvents.onCollisionStones += CheckGameOver;
 			m_gamePanel.SetActive(true);
 
-			m_maxDelay = m_settings.maxDelay;
+			m_maxDelay = m_settings[m_settingsIndex].maxDelay;
 
 			m_gameController.ResetScore();
 			m_gameController.RefreshScore(m_gameController.score);
@@ -46,7 +49,7 @@ namespace Game
 
 		private float CalcNextDelay()
 		{
-			var delay = Random.Range(m_settings.minDelay, m_maxDelay);
+			var delay = Random.Range(m_settings[m_settingsIndex].minDelay, m_maxDelay);
 			return delay;
 		}
 
@@ -77,7 +80,7 @@ namespace Game
 				m_timer -= m_delay;
 
 				m_delay = CalcNextDelay();
-				m_maxDelay = Mathf.Max(m_settings.minDelay, m_maxDelay - m_settings.stepDelay);
+				m_maxDelay = Mathf.Max(m_settings[m_settingsIndex].minDelay, m_maxDelay - m_settings[m_settingsIndex].stepDelay);
 			}
 		}
 

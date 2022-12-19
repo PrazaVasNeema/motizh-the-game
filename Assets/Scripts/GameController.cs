@@ -14,6 +14,8 @@ namespace Game{
         private MainMenuState m_mainMenuState;
         [SerializeField] 
         private GameState m_gameState;
+        [SerializeField]
+        private DataController m_dataState;
 
         private int m_score = 0;
         private int m_maxScore = 0;
@@ -25,7 +27,9 @@ namespace Game{
 
         private void Start()
         {
+            m_maxScore = m_dataState.m_gameData.maxScore;
             SetIntroState();
+            RefreshScore(maxScore);
         }
 
         public void SetIntroState()
@@ -56,6 +60,8 @@ namespace Game{
 
         public void GameOver()
         {
+            m_dataState.m_gameData.maxScore = m_maxScore;
+            m_dataState.SaveGameData();
             SetMainMenuState();
         }
 
