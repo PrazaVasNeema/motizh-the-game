@@ -18,6 +18,8 @@ namespace Game
 		private GameObject m_gamePanel;
 		[SerializeField]
 		private DataController m_dataController;
+		[SerializeField]
+		private AudioController m_dataAudioController;
 
 		private float m_timer = 0f;
 		private float m_delay = 0f;
@@ -88,6 +90,7 @@ namespace Game
 		{
 			if (collision.gameObject.TryGetComponent<Stone>(out var stone))
 			{
+				m_dataAudioController.m_hitRockSoundEffect.Play();
 				stone.isAffect = false;
 				var contact = collision.contacts[0];
 
