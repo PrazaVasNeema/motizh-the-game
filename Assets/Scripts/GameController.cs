@@ -132,5 +132,10 @@ namespace Game{
             Destroy(stone);
             Debug.Log("this");
         }
+        
+        public void Quit()
+        {
+            Application.Quit();
+        }
     }
 }
