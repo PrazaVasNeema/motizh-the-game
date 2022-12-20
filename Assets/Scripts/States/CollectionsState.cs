@@ -22,14 +22,25 @@ namespace Game
 		private GameObject m_CollectionPanel;
 		[SerializeField]
 		private GameObject m_ChooseItemPanel;
+		[SerializeField]
+		private GameObject m_rockPreview;
+		[SerializeField]
+		private Transform[] m_targetTransforms;
+		[SerializeField]
+		private DataController m_dataController;
 
 		private int collectionIndex;
+		private float smoothFactor = 1f;
+		private int targetTransformsIndex = 0;
+
 
 		private void OnEnable()
 		{
 
 			m_collections[0] = m_ch;
 			m_collections[1] = m_cp;
+			m_collections[2] = m_cr;
+		 
 			m_CollectionPanel.SetActive(true);
 		}
 
@@ -37,8 +48,17 @@ namespace Game
 		{
 			m_CollectionPanel.SetActive(false);
 		}
-		
-		public void ExitCollections()
+
+        private void Update()
+        {
+			if (Vector3.Distance(m_rockPreview.transform.position, m_targetTransforms[targetTransformsIndex].position) > .1f)
+			{
+				Vector3 smoothPosition = Vector3.Lerp(m_rockPreview.transform.position, m_targetTransforms[targetTransformsIndex].position, smoothFactor * Time.fixedDeltaTime);
+				m_rockPreview.transform.position = smoothPosition;
+			}
+		}
+
+        public void ExitCollections()
         {
 			m_mainMenuState.enabled = true;
 			this.enabled = false;
@@ -48,17 +68,57 @@ namespace Game
         {
 			this.collectionIndex = collectionIndex;
 			m_ChooseItemPanel.SetActive(true);
+			Exposition();
 		}
 
 		public void ExitThisCollection()
 		{
 			m_ChooseItemPanel.SetActive(false);
+			DeExposition();
 		}
 
 		public void ChangeThisItem(int dir)
         {
-			m_collections[collectionIndex].ChangeItem(dir);
+			int choice = m_collections[collectionIndex].ChangeItem(dir);
+			switch (collectionIndex)
+            {
+				case 0:
+					break;
+				case 1:
+					break;
+				case 2:
+					m_dataController.m_gameData.rockChoice = choice;
+					break;
+            }
+		}
+
+		private void Exposition()
+        {
+			switch (collectionIndex)
+            {
+				case 0:
+					break;
+				case 1:
+					break;
+				case 2:
+					targetTransformsIndex = 1;
+					break;
+
+            }
         }
 
+		private void DeExposition()
+        {
+			switch (collectionIndex)
+			{
+				case 0:
+					break;
+				case 1:
+					break;
+				case 2:
+					targetTransformsIndex = 0;
+					break;
+			}
+		}
 	}
 }

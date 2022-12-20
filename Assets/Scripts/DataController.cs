@@ -20,7 +20,7 @@ namespace Game
             }
             catch
             {
-                m_gameData = new GameData(0, 0, 0);
+                m_gameData = new GameData(0, 0, 0, 0);
                 SaveGameData();
             }
         }

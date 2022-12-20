@@ -7,7 +7,7 @@ namespace Game
 
     public interface CollectionItem
     {
-        void ChangeItem(int dir);
+        int ChangeItem(int dir);
     }
 
 }

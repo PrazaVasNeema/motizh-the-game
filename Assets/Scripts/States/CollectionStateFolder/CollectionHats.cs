@@ -29,13 +29,14 @@ namespace Game
             }
         }
 
-        public void ChangeItem(int dir)
+        public int ChangeItem(int dir)
         {
             m_hats.GetChild(index).gameObject.SetActive(false);
             index = (index + dir) % m_hats.childCount;
             index = index < 0 ? m_hats.childCount - 1: index;
             m_hats.GetChild(index).gameObject.SetActive(true);
             label.text = m_label_text[index];
+            return index;
         }
     }
 }
