@@ -45,7 +45,11 @@ namespace Game
 
 		public void EnterCollections()
         {
+			Debug.Log("dfgfdg");
+
+			m_collectionsState.enabled = false;
 			m_collectionsState.enabled = true;
+
 			this.enabled = false;
 		}
 

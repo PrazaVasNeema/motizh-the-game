@@ -8,8 +8,12 @@ namespace Game
     {
         [SerializeField]
         private Transform m_hats;
+        [SerializeField]
+        private string[] m_label_text;
+        [SerializeField]
+        private TMPro.TMP_Text label;
 
-        private int index = 0;
+        private int index = 2;
 
         void Start()
         {
@@ -20,6 +24,7 @@ namespace Game
 
             if (m_hats.childCount > 0)
             {
+                label.text = m_label_text[index];
                 m_hats.GetChild(index).gameObject.SetActive(true);
             }
         }
@@ -30,6 +35,7 @@ namespace Game
             index = (index + dir) % m_hats.childCount;
             index = index < 0 ? m_hats.childCount - 1: index;
             m_hats.GetChild(index).gameObject.SetActive(true);
+            label.text = m_label_text[index];
         }
     }
 }

@@ -7,7 +7,15 @@ namespace Game
     public class CollectionsState : MonoBehaviour
     {
         [SerializeField]
-        private CollectionHats[] m_collections;
+        public CollectionItem[] m_collections = new CollectionItem[3];
+		[SerializeField]
+		public CollectionHats m_ch;
+		[SerializeField]
+		public CollectionPowls m_cp;
+		[SerializeField]
+		public CollectionRocks m_cr;
+		[SerializeField]
+		private MainMenuState m_mainMenuState;
 		[SerializeField]
 		private GameObject m_mainMenuPanel;
 		[SerializeField]
@@ -19,6 +27,9 @@ namespace Game
 
 		private void OnEnable()
 		{
+
+			m_collections[0] = m_ch;
+			m_collections[1] = m_cp;
 			m_CollectionPanel.SetActive(true);
 		}
 
@@ -29,20 +40,18 @@ namespace Game
 		
 		public void ExitCollections()
         {
-			m_CollectionPanel.SetActive(false);
-			m_mainMenuPanel.SetActive(true);
+			m_mainMenuState.enabled = true;
+			this.enabled = false;
 		}
 
 		public void EnterThisCollection(int collectionIndex)
         {
 			this.collectionIndex = collectionIndex;
-			m_collections[collectionIndex].enabled = true;
 			m_ChooseItemPanel.SetActive(true);
 		}
 
 		public void ExitThisCollection()
 		{
-			m_collections[collectionIndex].enabled = false;
 			m_ChooseItemPanel.SetActive(false);
 		}
 
