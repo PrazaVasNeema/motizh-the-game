@@ -15,6 +15,10 @@ namespace Game
 		[SerializeField]
 		private StoneSpawner m_stoneSpawner;
 		[SerializeField]
+		private GameObject m_scorePanel;
+		[SerializeField]
+		private GameObject m_scoreIngamePanelPart;
+		[SerializeField]
 		private GameObject m_gamePanel;
 		[SerializeField]
 		private DataController m_dataController;
@@ -31,19 +35,22 @@ namespace Game
 		{
 			m_settingsIndex = m_dataController.m_gameData.difficultyLevel;
 			GameEvents.onCollisionStones += CheckGameOver;
+			m_scorePanel.SetActive(true);
+			m_scoreIngamePanelPart.SetActive(true);
 			m_gamePanel.SetActive(true);
 
 			m_maxDelay = m_settings[m_settingsIndex].maxDelay;
 
 			m_gameController.ResetScore();
-			m_gameController.RefreshScore(m_gameController.score);
+			m_gameController.RefreshScoreIngame(m_gameController.score);
 		}
 
 		private void OnDisable()
 		{
-			if (m_gamePanel != null)
+			m_gamePanel.SetActive(false);
+			if (m_scoreIngamePanelPart != null)
 			{
-				m_gamePanel.SetActive(false);
+				m_scoreIngamePanelPart.SetActive(false);
 			}
 			ClearStones();
 			GameEvents.onCollisionStones -= CheckGameOver;
@@ -100,7 +107,7 @@ namespace Game
 				body.AddForce(stick.dir * m_power, ForceMode.Impulse);
 
 				m_gameController.IncScore();
-				m_gameController.RefreshScore(m_gameController.score);
+				m_gameController.RefreshScoreIngame(m_gameController.score);
 
 				Physics.IgnoreCollision(contact.thisCollider, contact.otherCollider, true);
 			}

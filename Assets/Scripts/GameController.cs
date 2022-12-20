@@ -22,8 +22,10 @@ namespace Game{
         private AudioController m_audioController;
 
         private int m_score = 0;
-        private int m_maxScore;
-        public int maxScore => m_maxScore;
+        private int m_maxScoreNormal;
+        public int maxScoreNormal => m_maxScoreNormal;
+        private int m_maxScoreHard;
+        public int maxScoreHard => m_maxScoreHard;
         public int score => m_score;
 
 
@@ -32,11 +34,12 @@ namespace Game{
         private void Start()
         {
             m_dataController.InitData();
-            m_maxScore = m_dataController.m_gameData.maxScore;
+            m_maxScoreNormal = m_dataController.m_gameData.maxScoreNormal;
+            m_maxScoreHard = m_dataController.m_gameData.maxScoreHard;
             m_collectionsState.LoadCollectionsState();
             m_audioController.SetMusicStatus(m_dataController.m_gameData.musicCheckbox);
             SetIntroState();
-            RefreshScore(m_maxScore);
+            RefreshScoreRecords(m_maxScoreNormal, m_maxScoreHard);
         }
 
         public void SetIntroState()
@@ -67,8 +70,19 @@ namespace Game{
 
         public void GameOver()
         {
-            Debug.Log(m_maxScore);
-            m_dataController.m_gameData.maxScore = m_maxScore;
+            Debug.Log(m_dataController.m_gameData.difficultyLevel);
+            switch (m_dataController.m_gameData.difficultyLevel)
+            {
+                case 0:
+                    m_maxScoreNormal = Mathf.Max(m_score, m_maxScoreNormal);
+                    m_dataController.m_gameData.maxScoreNormal = m_maxScoreNormal;
+                    break;
+                case 1:
+                    m_maxScoreHard = Mathf.Max(m_score, m_maxScoreHard);
+                    m_dataController.m_gameData.maxScoreHard = m_maxScoreHard;
+                    break;
+            }
+           
             m_dataController.SaveGameData();
             SetMainMenuState();
         }
@@ -76,7 +90,6 @@ namespace Game{
         public void IncScore()
         {
             m_score++;
-            m_maxScore = Mathf.Max(m_score, m_maxScore);
         }
 
         public void ResetScore()
@@ -84,9 +97,14 @@ namespace Game{
             m_score = 0;
         }
 
-        public void RefreshScore(int score)
+        public void RefreshScoreRecords(int scoreNormal, int scoreHard)
         {
-            m_scorePanel.SetScore(score);
+            m_scorePanel.SetScoreNormal(scoreNormal);
+            m_scorePanel.SetScoreHard(scoreHard);
+        }
+        public void RefreshScoreIngame(int score)
+        {
+            m_scorePanel.SetScoreIngame(score);
         }
 
         public void BringCameraToPoint(Transform point)

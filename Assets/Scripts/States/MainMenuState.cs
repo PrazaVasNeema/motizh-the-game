@@ -15,6 +15,10 @@ namespace Game
 		[SerializeField]
 		private GameObject m_mainMenuPanel;
 		[SerializeField]
+		private GameObject m_scorePanel;
+		[SerializeField]
+		private GameObject m_scoreRecordsPanelPart;
+		[SerializeField]
 		private GameObject m_collectionsPanel;
 		[SerializeField]
 		private GameObject m_settingsPanel;
@@ -33,13 +37,17 @@ namespace Game
 
 		private void OnEnable()
 		{
-			m_gameController.RefreshScore(m_gameController.maxScore);
+			m_gameController.RefreshScoreRecords(m_gameController.maxScoreNormal, m_gameController.maxScoreHard);
 			m_mainMenuPanel.SetActive(true);
+			m_scorePanel.SetActive(true);
+			m_scoreRecordsPanelPart.SetActive(true);
 		}
 
 		private void OnDisable()
 		{
 			m_mainMenuPanel.SetActive(false);
+			m_scoreRecordsPanelPart.SetActive(false);
+			m_scorePanel.SetActive(false);
 		}
 
 		public void PlayGame()
@@ -49,8 +57,7 @@ namespace Game
 
 		public void EnterCollections()
         {
-			Debug.Log("dfgfdg");
-
+			m_scorePanel.SetActive(false);
 			m_collectionsState.enabled = false;
 			m_collectionsState.enabled = true;
 
@@ -59,6 +66,7 @@ namespace Game
 
 		public void EnterSettings()
         {
+			m_scorePanel.SetActive(false);
 			m_difficultyDropdown.value = m_dataController.m_gameData.difficultyLevel;
 			m_musicToggle.isOn = m_dataController.m_gameData.musicCheckbox == 1 ? true : false;
 			m_mainCamera.StriveForTransform(m_mainCameraTransforms[1]);
@@ -67,6 +75,7 @@ namespace Game
 		}
 		public void ExitSettings()
 		{
+			m_scorePanel.SetActive(true);
 			m_mainCamera.StriveForTransform(m_mainCameraTransforms[0]);
 			m_mainMenuPanel.SetActive(true);
 			m_settingsPanel.SetActive(false);

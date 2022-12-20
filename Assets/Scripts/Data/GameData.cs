@@ -9,16 +9,18 @@ public class GameData
 {
     public int difficultyLevel;
     public int musicCheckbox;
-    public int maxScore;
+    public int maxScoreNormal;
+    public int maxScoreHard;
     public int hatChoice;
     public int plowChoice;
     public int rockChoice;
 
-    public GameData(int difficultyLevel, int musicCheckbox, int maxScore, int hatChoice, int plowChoice, int rockChoice)
+    public GameData(int difficultyLevel, int musicCheckbox, int maxScoreNormal, int maxScoreHard, int hatChoice, int plowChoice, int rockChoice)
     {
         this.difficultyLevel = difficultyLevel;
         this.musicCheckbox = musicCheckbox;
-        this.maxScore = maxScore;
+        this.maxScoreNormal = maxScoreNormal;
+        this.maxScoreHard = maxScoreHard;
         this.hatChoice = hatChoice;
         this.plowChoice = plowChoice;
         this.rockChoice = rockChoice;
