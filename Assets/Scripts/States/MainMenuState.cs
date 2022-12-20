@@ -25,7 +25,11 @@ namespace Game
 		[SerializeField]
 		private DataController m_dataController;
 		[SerializeField]
-		private TMPro.TMP_Dropdown m_dropdown;
+		private TMPro.TMP_Dropdown m_difficultyDropdown;
+		[SerializeField]
+		private Toggle m_musicToggle;
+		[SerializeField]
+		private AudioController m_audioController;
 
 		private void OnEnable()
 		{
@@ -55,7 +59,8 @@ namespace Game
 
 		public void EnterSettings()
         {
-			m_dropdown.value = m_dataController.m_gameData.difficultyLevel;
+			m_difficultyDropdown.value = m_dataController.m_gameData.difficultyLevel;
+			m_musicToggle.isOn = m_dataController.m_gameData.musicCheckbox == 1 ? true : false;
 			m_mainCamera.StriveForTransform(m_mainCameraTransforms[1]);
 			m_mainMenuPanel.SetActive(false);
 			m_settingsPanel.SetActive(true);
@@ -69,9 +74,17 @@ namespace Game
 
 		public void SetDifficultyLevel()
         {
-			Debug.Log(m_dropdown.value);
-			int difficultyLevel = m_dropdown.value;
+			Debug.Log(m_difficultyDropdown.value);
+			int difficultyLevel = m_difficultyDropdown.value;
 			m_dataController.m_gameData.difficultyLevel = difficultyLevel;
+			m_dataController.SaveGameData();
+		}
+
+		public void SetMusicStatus()
+        {
+			bool music_status = m_musicToggle.isOn;
+			m_dataController.m_gameData.musicCheckbox = music_status ? 1 : 0;
+			m_audioController.SetMusicStatus(m_dataController.m_gameData.musicCheckbox);
 			m_dataController.SaveGameData();
 		}
 	}

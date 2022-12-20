@@ -18,6 +18,8 @@ namespace Game{
         private GameState m_gameState;
         [SerializeField]
         private DataController m_dataController;
+        [SerializeField]
+        private AudioController m_audioController;
 
         private int m_score = 0;
         private int m_maxScore;
@@ -32,6 +34,7 @@ namespace Game{
             m_dataController.InitData();
             m_maxScore = m_dataController.m_gameData.maxScore;
             m_collectionsState.LoadCollectionsState();
+            m_audioController.SetMusicStatus(m_dataController.m_gameData.musicCheckbox);
             SetIntroState();
             RefreshScore(m_maxScore);
         }
