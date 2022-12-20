@@ -17,6 +17,11 @@ namespace Game
 
         void Start()
         {
+
+        }
+        public void LoadCollectionChoices(int index)
+        {
+            this.index = index;
             foreach (Transform child in m_plows)
             {
                 child.gameObject.SetActive(false);

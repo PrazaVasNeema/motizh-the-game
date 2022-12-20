@@ -12,6 +12,8 @@ namespace Game{
         private IntroState m_introState;
         [SerializeField] 
         private MainMenuState m_mainMenuState;
+        [SerializeField]
+        private CollectionsState m_collectionsState;
         [SerializeField] 
         private GameState m_gameState;
         [SerializeField]
@@ -29,6 +31,7 @@ namespace Game{
         {
             m_dataController.InitData();
             m_maxScore = m_dataController.m_gameData.maxScore;
+            m_collectionsState.LoadCollectionsState();
             SetIntroState();
             RefreshScore(m_maxScore);
         }

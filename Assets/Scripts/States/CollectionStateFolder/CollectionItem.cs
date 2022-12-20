@@ -8,6 +8,7 @@ namespace Game
     public interface CollectionItem
     {
         int ChangeItem(int dir);
+        void LoadCollectionChoices(int index);
     }
 
 }

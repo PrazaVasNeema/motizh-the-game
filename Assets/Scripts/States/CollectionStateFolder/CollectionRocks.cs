@@ -17,6 +17,11 @@ namespace Game
 
         void Start()
         {
+
+        }
+        public void LoadCollectionChoices(int index)
+        {
+            this.index = index;
             foreach (Transform child in m_rocks)
             {
                 child.gameObject.SetActive(false);
@@ -28,8 +33,6 @@ namespace Game
                 m_rocks.GetChild(index).gameObject.SetActive(true);
             }
         }
-
-
 
         public int ChangeItem(int dir)
         {

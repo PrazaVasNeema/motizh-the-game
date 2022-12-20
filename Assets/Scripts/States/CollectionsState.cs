@@ -28,6 +28,10 @@ namespace Game
 		private Transform[] m_targetTransforms;
 		[SerializeField]
 		private DataController m_dataController;
+		[SerializeField]
+		private MainCamera m_mainCamera;
+		[SerializeField]
+		private Transform[] m_mainCameraTransforms;
 
 		private int collectionIndex;
 		private float smoothFactor = 1f;
@@ -37,9 +41,7 @@ namespace Game
 		private void OnEnable()
 		{
 
-			m_collections[0] = m_ch;
-			m_collections[1] = m_cp;
-			m_collections[2] = m_cr;
+
 		 
 			m_collectionPanel.SetActive(true);
 		}
@@ -49,7 +51,17 @@ namespace Game
 			m_collectionPanel.SetActive(false);
 		}
 
-        private void Update()
+		public void LoadCollectionsState()
+        {
+			m_collections[0] = m_ch;
+			m_collections[1] = m_cp;
+			m_collections[2] = m_cr;
+			m_collections[0].LoadCollectionChoices(m_dataController.m_gameData.hatChoice);
+			m_collections[1].LoadCollectionChoices(m_dataController.m_gameData.plowChoice);
+			m_collections[2].LoadCollectionChoices(m_dataController.m_gameData.rockChoice);
+		}
+
+		private void Update()
         {
 			if (Vector3.Distance(m_rockPreview.transform.position, m_targetTransforms[targetTransformsIndex].position) > .1f)
 			{
@@ -85,13 +97,16 @@ namespace Game
 			switch (collectionIndex)
             {
 				case 0:
+					m_dataController.m_gameData.hatChoice = choice;
 					break;
 				case 1:
+					m_dataController.m_gameData.plowChoice = choice;
 					break;
 				case 2:
 					m_dataController.m_gameData.rockChoice = choice;
 					break;
             }
+			m_dataController.SaveGameData();
 		}
 
 		private void Exposition()
@@ -99,10 +114,13 @@ namespace Game
 			switch (collectionIndex)
             {
 				case 0:
+					m_mainCamera.StriveForTransform(m_mainCameraTransforms[1]);
 					break;
 				case 1:
+					m_mainCamera.StriveForTransform(m_mainCameraTransforms[2]);
 					break;
 				case 2:
+					m_mainCamera.StriveForTransform(m_mainCameraTransforms[3]);
 					targetTransformsIndex = 1;
 					break;
 
@@ -121,6 +139,7 @@ namespace Game
 					targetTransformsIndex = 0;
 					break;
 			}
+			m_mainCamera.StriveForTransform(m_mainCameraTransforms[0]);
 		}
 	}
 }
