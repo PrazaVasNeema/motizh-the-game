@@ -66,6 +66,7 @@ namespace Game{
         public void StartGame()
         {
             SetGameState();
+            m_scorePanel.SetScorePanelDifficultyLevel(m_dataController.m_gameData.difficultyLevel);
         }
 
         public void GameOver()

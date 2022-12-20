@@ -82,6 +82,7 @@ namespace Game
 			m_chooseItemPanel.SetActive(true);
 			m_collectionPanel.SetActive(false);
 			Exposition();
+			m_collections[collectionIndex].ChangeItem(0);
 		}
 
 		public void ExitThisCollection()
