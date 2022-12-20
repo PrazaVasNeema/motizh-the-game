@@ -19,7 +19,7 @@ namespace Game
 		[SerializeField]
 		private DataController m_dataController;
 		[SerializeField]
-		private AudioController m_dataAudioController;
+		private AudioController m_audioController;
 
 		private float m_timer = 0f;
 		private float m_delay = 0f;
@@ -59,7 +59,7 @@ namespace Game
 		{
 			foreach (GameObject stone in m_stones)
 			{
-				Destroy(stone);
+				StartCoroutine(m_gameController.DestroyStone(stone));
 			}
 			m_stones.Clear();
 		}
@@ -90,7 +90,7 @@ namespace Game
 		{
 			if (collision.gameObject.TryGetComponent<Stone>(out var stone))
 			{
-				m_dataAudioController.m_hitRockSoundEffect.Play();
+				m_audioController.m_hitRockSoundEffect.Play();
 				stone.isAffect = false;
 				var contact = collision.contacts[0];
 

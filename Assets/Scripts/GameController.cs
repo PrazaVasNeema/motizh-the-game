@@ -94,5 +94,24 @@ namespace Game{
 
         }
 
+        public IEnumerator DestroyStone(GameObject stone)
+        {
+            GameObject sphere = stone.gameObject.transform.GetChild(0).gameObject;
+            sphere.SetActive(true);
+            Debug.Log("this");
+
+            m_audioController.m_disappearRockSoundEffect.Play();
+            Debug.Log("this");
+
+            while (stone.gameObject.transform.localScale.x > 0.001f)
+            {
+                stone.gameObject.transform.localScale -= new Vector3(0.03f, 0.03f, 0.03f);
+                //yield return null;
+                yield return new WaitForSeconds(.1f);
+                Debug.Log("this");
+            }
+            Destroy(stone);
+            Debug.Log("this");
+        }
     }
 }
