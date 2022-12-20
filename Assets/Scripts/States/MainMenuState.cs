@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game
 {
@@ -19,6 +20,8 @@ namespace Game
 		private Transform[] m_mainCameraTransforms;
 		[SerializeField]
 		private DataController m_dataController;
+		[SerializeField]
+		private TMPro.TMP_Dropdown m_dropdown;
 
 		private void OnEnable()
 		{
@@ -38,6 +41,7 @@ namespace Game
 
 		public void EnterSettings()
         {
+			m_dropdown.value = m_dataController.m_gameData.difficultyLevel;
 			m_mainCamera.StriveForTransform(m_mainCameraTransforms[1]);
 			m_mainMenuPanel.SetActive(false);
 			m_settingsPanel.SetActive(true);
@@ -49,8 +53,10 @@ namespace Game
 			m_settingsPanel.SetActive(false);
 		}
 
-		public void SetDifficultyLevel(int difficultyLevel)
+		public void SetDifficultyLevel()
         {
+			Debug.Log(m_dropdown.value);
+			int difficultyLevel = m_dropdown.value;
 			m_dataController.m_gameData.difficultyLevel = difficultyLevel;
 			m_dataController.SaveGameData();
 		}

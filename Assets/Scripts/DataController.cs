@@ -11,7 +11,7 @@ namespace Game
         public GameData m_gameData;
         private string m_path = "";
 
-        private void Start()
+        public void InitData()
         {
             m_path = Application.dataPath + Path.AltDirectorySeparatorChar + "SaveData.json";
             try
@@ -37,7 +37,7 @@ namespace Game
             using StreamReader reader = new StreamReader(m_path);
             string json = reader.ReadToEnd();
             m_gameData = JsonUtility.FromJson<GameData>(json);
-            Debug.Log(m_gameData.difficultyLevel);
+
         }
     }
 
