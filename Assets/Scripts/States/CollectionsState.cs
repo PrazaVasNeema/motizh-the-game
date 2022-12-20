@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game
 {
-    public class CollectionState : MonoBehaviour
+    public class CollectionsState : MonoBehaviour
     {
         [SerializeField]
         private CollectionHats[] m_collections;
@@ -40,7 +40,7 @@ namespace Game
 			m_ChooseItemPanel.SetActive(true);
 		}
 
-		public void ExitThisCollection(int collectionIndex)
+		public void ExitThisCollection()
 		{
 			m_collections[collectionIndex].enabled = false;
 			m_ChooseItemPanel.SetActive(false);

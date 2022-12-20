@@ -11,7 +11,11 @@ namespace Game
 		[SerializeField]
 		private GameController m_gameController;
 		[SerializeField]
+		private CollectionsState m_collectionsState;
+		[SerializeField]
 		private GameObject m_mainMenuPanel;
+		[SerializeField]
+		private GameObject m_collectionsPanel;
 		[SerializeField]
 		private GameObject m_settingsPanel;
 		[SerializeField]
@@ -37,6 +41,12 @@ namespace Game
 		public void PlayGame()
 		{
 			m_gameController.StartGame();
+		}
+
+		public void EnterCollections()
+        {
+			m_collectionsState.enabled = true;
+			this.enabled = false;
 		}
 
 		public void EnterSettings()
