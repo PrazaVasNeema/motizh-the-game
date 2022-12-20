@@ -1504,6 +1504,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4947743726954784, guid: 63ce2b31e16acab4d8a41f884c36333c, type: 3}
   m_PrefabInstance: {fileID: 144989975}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &148215718 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: d1fd41beb70267947bc1c996df07593d, type: 3}
+  m_PrefabInstance: {fileID: 2055047905}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &149508877
 GameObject:
   m_ObjectHideFlags: 0
@@ -11847,6 +11852,11 @@ MonoBehaviour:
   - {fileID: 2537082933047392383, guid: 926ab9ca0af25a44bb9c760a23165ce5, type: 3}
   - {fileID: 5380268018491609523, guid: c7abc4011a6814244a8f007042023a33, type: 3}
   - {fileID: 1272691272404989824, guid: 1720574835a107844920bf1194735e55, type: 3}
+  stonePrefabsBlack:
+  - {fileID: 2537082933047392383, guid: 2f7c677f07a98fa498aec1f1c6eea566, type: 3}
+  - {fileID: 5380268018491609523, guid: 69e8dbfc5b7be42409ec8921a59fd038, type: 3}
+  - {fileID: 1272691272404989824, guid: b91a536c643944a4cb0ee81c444d22f7, type: 3}
+  m_dataController: {fileID: 1527201142}
 --- !u!1 &1058336577 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1069567032315564, guid: bdf8e7438a7816543998181bd3067573, type: 3}
@@ -13787,10 +13797,11 @@ MonoBehaviour:
   m_mainMenuPanel: {fileID: 734946125}
   m_CollectionPanel: {fileID: 1770908872}
   m_ChooseItemPanel: {fileID: 1591754880}
-  m_rockPreview: {fileID: 0}
-  m_targetTransforms: []
-  m_dataController: {fileID: 0}
-  smoothFactor: 10
+  m_rockPreview: {fileID: 148215718}
+  m_targetTransforms:
+  - {fileID: 701953106}
+  - {fileID: 1170563956}
+  m_dataController: {fileID: 1527201142}
 --- !u!4 &1232320930
 Transform:
   m_ObjectHideFlags: 0
@@ -26179,7 +26190,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2111025917}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1232320929}
+        m_TargetAssemblyTypeName: Game.CollectionsState, Assembly-CSharp
+        m_MethodName: EnterThisCollection
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2111025917
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -19,9 +19,9 @@ namespace Game
 		[SerializeField]
 		private GameObject m_mainMenuPanel;
 		[SerializeField]
-		private GameObject m_CollectionPanel;
+		private GameObject m_collectionPanel;
 		[SerializeField]
-		private GameObject m_ChooseItemPanel;
+		private GameObject m_chooseItemPanel;
 		[SerializeField]
 		private GameObject m_rockPreview;
 		[SerializeField]
@@ -41,12 +41,12 @@ namespace Game
 			m_collections[1] = m_cp;
 			m_collections[2] = m_cr;
 		 
-			m_CollectionPanel.SetActive(true);
+			m_collectionPanel.SetActive(true);
 		}
 
 		private void OnDisable()
 		{
-			m_CollectionPanel.SetActive(false);
+			m_collectionPanel.SetActive(false);
 		}
 
         private void Update()
@@ -67,13 +67,15 @@ namespace Game
 		public void EnterThisCollection(int collectionIndex)
         {
 			this.collectionIndex = collectionIndex;
-			m_ChooseItemPanel.SetActive(true);
+			m_chooseItemPanel.SetActive(true);
+			m_collectionPanel.SetActive(false);
 			Exposition();
 		}
 
 		public void ExitThisCollection()
 		{
-			m_ChooseItemPanel.SetActive(false);
+			m_chooseItemPanel.SetActive(false);
+			m_collectionPanel.SetActive(true);
 			DeExposition();
 		}
 
