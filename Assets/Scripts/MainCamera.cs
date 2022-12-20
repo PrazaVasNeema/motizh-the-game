@@ -8,7 +8,7 @@ namespace Game
     public class MainCamera : MonoBehaviour
     {
         [Range(0.1f, 10f)]
-        public float smoothFactor;
+        public float smoothFactor = 0.5f;
         private Transform m_targetTransform;
         private void Start()
         {
