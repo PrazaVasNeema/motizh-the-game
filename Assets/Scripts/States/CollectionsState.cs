@@ -32,13 +32,19 @@ namespace Game
 		private MainCamera m_mainCamera;
 		[SerializeField]
 		private Transform[] m_mainCameraTransforms;
+		[SerializeField]
+		private float smoothFactor = 1f;
+
 
 		private int collectionIndex;
-		private float smoothFactor = 1f;
 		private int targetTransformsIndex = 0;
 
+        private void Start()
+        {
+			smoothFactor = 12f;
+        }
 
-		private void OnEnable()
+        private void OnEnable()
 		{
 
 
