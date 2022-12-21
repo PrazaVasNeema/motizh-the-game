@@ -33,7 +33,7 @@ namespace Game
 		[SerializeField]
 		private Transform[] m_mainCameraTransforms;
 		[SerializeField]
-		private float smoothFactor = 1f;
+		private float smoothFactor = .5f;
 
 
 		private int collectionIndex;
@@ -41,7 +41,7 @@ namespace Game
 
         private void Start()
         {
-			smoothFactor = 12f;
+			smoothFactor = .8f;
         }
 
         private void OnEnable()
